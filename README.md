@@ -1,7 +1,7 @@
 rsid_find
 =========
 
-This is tool and module for find all connected RealSense ID devices.  
+This is tool for find all connected RealSense ID devices.  
 
 Sample
 ------
@@ -17,20 +17,7 @@ Find RealSense ID Devices
 * number of devices : 1
 * deivice 1
   - serial type : USB
-  - port        : COM3
-```
-
-Module
-------
-You can use find devices module in your C++ code.  
-This module returns serial configurations of all connected devices.  
-You can easily connect to RealSenseID::FaceAuthenticator with this configuration.  
-```cpp
-#include "RealSenseID/FindDevices.h"
-```
-```cpp
-RealSenseID::FindDevices find_devices;
-std::vector<RealSenseID::SerialConfig> serial_configs = find_devices.get_serialconfigs();
+  - port        : \\.\COM3
 ```
 
 Environment

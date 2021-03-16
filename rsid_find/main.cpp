@@ -2,8 +2,7 @@
 #include <sstream>
 #include <vector>
 
-#include "RealSenseID/SerialConfig.h"
-#include "RealSenseID/FindDevices.h"
+#include "RealSenseID/DiscoverDevices.h"
 
 int main( int argc, char* argv[] )
 {
@@ -11,16 +10,15 @@ int main( int argc, char* argv[] )
         std::cout << "Find RealSense ID Devices" << std::endl;
         std::cout << "-------------------------" << std::endl;
 
-        RealSenseID::FindDevices find_devices;
-        std::vector<RealSenseID::SerialConfig> serial_configs = find_devices.get_serialconfigs();
+        std::vector<RealSenseID::DeviceInfo> device_infos = RealSenseID::DiscoverDevices();
 
-        std::cout << "* number of devices : " << serial_configs.size() << std::endl;
+        std::cout << "* number of devices : " << device_infos.size() << std::endl;
 
-        for( int32_t i = 0; i < serial_configs.size(); i++ ){
-            const RealSenseID::SerialConfig& serial_config = serial_configs[i];
+        for( int32_t i = 0; i < device_infos.size(); i++ ){
+            const RealSenseID::DeviceInfo& device_info = device_infos[i];
             std::cout << "* device " << i + 1 << std::endl;
-            std::cout << "  - serial type : " << ( serial_config.serType == RealSenseID::SerialType::USB ? "USB" : "UART" ) << std::endl;
-            std::cout << "  - port        : " << serial_config.port << std::endl;
+            std::cout << "  - serial type : " << ( device_info.serialPortType == RealSenseID::SerialType::USB ? "USB" : "UART" ) << std::endl;
+            std::cout << "  - port        : " << device_info.serialPort << std::endl;
         }
     }
     catch( std::exception& ex ){
